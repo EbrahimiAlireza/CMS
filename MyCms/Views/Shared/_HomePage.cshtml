@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html class="no-js" dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <base href="/">
+    <meta name="googlebot" content="index,follow">
+    <meta name="robots" content="noodp,noydir">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="~/Content/img/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/owl.carousel.css">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css">
+</head>
+<body dir="rtl">
+
+    <!-- Top Menu -->
+    <div class="top-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-5">
+                    <ul>
+                        <li><a href=""><i class="fa fa-home"></i></a></li>
+                        @*<li><a href=""><i class="fa fa-question-circle"></i></a></li>
+                        <li><a href=""><i class="fa fa-envelope"></i></a></li>*@
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-7">
+                    <span>امروز @DateTime.Now.ToShamsi()</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Menu -->
+    <!-- header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 pull-right col-md-offset-6">
+                    <form action="/Search" method="get" class="border-radius">
+                        <input  name="q" class="border-radius" type="text" placeholder="جستجو کنید ... ">
+                        <button><i class="fa fa-search fa-1x"></i></button>
+                    </form>
+                </div>
+            </div>
+            @*@if (User.Identity.IsAuthenticated)
+            {
+                <div class="thumbnail col-md-3">
+                    <ul>
+                        <li>
+                            <a href="/Admin/PageGroups">مدیریت گروه ها</a>
+                        </li>
+                        <li class="margin-top-20">
+                            <a href="/Admin/Pages"> مدیریت صفحات</a>
+                        </li>
+                    </ul>
+                </div>
+            }*@
+        </div>
+
+    </header>
+    <!-- End Header -->
+    <!-- menu -->
+    <nav class="main-menu">
+        <div class="container">
+            <span><i class="fa fa-th-list"></i></span>
+            <ul>
+                <li><a href="/Archive">  همه مقالات </a></li>
+                
+                <li>
+                   @Html.Action("ShowGroupsInMenu", "News")
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End menu -->
+
+    <div class="container">
+        <div class="row">
+
+            <aside class="col-lg-4 col-md-4 col-sm-4 margin-top-30 col-xs-12">
+
+                <div>
+                    <div>
+                        @Html.Action("ShowGroups", "News")
+                    </div>
+                    <div>
+                        @Html.Action("TopNews", "News")
+                    </div>
+                </div>
+            </aside>
+
+
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                @RenderBody()
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <p class="text-center text-white">
+                        تمامی حقوق مادی و معنوی این طرح متعلق به علیرضا ابراهیمی  می باشد و کپی برداری از این طرح غیر اخلاقی می باشد.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Content/js/owl.carousel.js"></script>
+    <script src="~/Content/js/modernizr.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Content/js/script.js"></script>
+
+    @RenderSection("Scripts",false)
+
+</body>
+</html>

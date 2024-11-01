@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DataLayer.Page>
+@{
+    ViewBag.Title = "همه مقالات";
+}
+
+@if (Model.Any())
+{
+    <section class="last-news-section border-radius margin-top-30">
+        <header><i class="icons icon-doc-2"></i>  <h3>آرشیو</h3> </header>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <img class="border-radius" src="~/PageImages/@item.ImageName">
+                    <h2> <a href="/News/@item.PageID/@item.Title"> @item.Title </a></h2>
+                    <p>
+                        @item.ShortDescription
+                    </p>
+                    <a href="/News/@item.PageID" class="more-link"><i class="icons icon-more"></i></a>
+                </li>
+            }
+        </ul>
+    </section>
+    <form action="Archive" id="Form">
+        <input type="hidden" name="pageId" id="pageId" value="@ViewBag.pageId" />
+    </form>
+
+    if (ViewBag.PageCount > 1)
+    {
+        <ul class="pagination">
+            @for (int i = 0; i < ViewBag.PageCount; i++)
+            {
+                <li><a onclick="ChangePageId(@i+1)">@(i+1)</a></li>
+            }
+        </ul>
+    }
+}
+else
+{
+    <div class="alert alert-info">
+        <p>
+            بزودی
+        </p>
+    </div>
+
+}
+
+<script>
+
+    function ChangePageId(pageId) {
+        $("#pageId").val(pageId);
+        $("#Form").submit();
+    }
+
+</script>

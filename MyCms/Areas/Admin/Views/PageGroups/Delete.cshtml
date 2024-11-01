@@ -1,0 +1,17 @@
+﻿@model DataLayer.PageGroup
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>ایا از حذف گروه {@Model.GroupTitle} مطعن هستید ؟</h3>
+<hr />
+<div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" />
+        </div>
+    }
+</div>

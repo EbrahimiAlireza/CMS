@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DataLayer.Page>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>اخبار</h2>
+
+<p>
+    @Html.ActionLink("خبر جدید", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageGroup.GroupTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Visit)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ShowInSlider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/PageImages/@item.ImageName" class="thumbnail" style="max-width:120px;">
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PageGroup.GroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Visit)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInSlider)
+            </td>
+            <td>
+                @item.CreateDate.ToShamsi()
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.PageID }, new { @class = "btn btn-warning btn-xs" })
+                @Html.ActionLink("جزئیات", "Details", new { id = item.PageID }, new { @class = "btn btn-info btn-xs" })
+                @Html.ActionLink("حذف", "Delete", new { id = item.PageID }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>
